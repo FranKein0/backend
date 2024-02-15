@@ -1,21 +1,22 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const ProductManager = require('./ProductManager.js');
+import express from 'express';
+import bodyParser from 'body-parser';
+import ProductManager from './ProductManager.js';
+
 const app = express();
 const port = 8080;
 
-//parse JSON y urlencoded
+//parsear JSON y urlencoded
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const productManager = new ProductManager('./productos.json');
 
-// Endpoint
+// endpoint según el límite
 app.get('/products', async (req, res) => {
     try {
         const limit = req.query.limit;
         const products = await productManager.getProducts();
-        
+
         if (limit) {
             res.json(products.slice(0, parseInt(limit)));
         } else {
@@ -27,7 +28,7 @@ app.get('/products', async (req, res) => {
     }
 });
 
-// Endpoint por ID
+// endpoint ID
 app.get('/products/:pid', async (req, res) => {
     try {
         const productId = parseInt(req.params.pid);
@@ -44,7 +45,8 @@ app.get('/products/:pid', async (req, res) => {
     }
 });
 
-// Inicia el servidor
+// inicializar el servidor
 app.listen(port, () => {
     console.log(`Servidor escuchando en http://localhost:${port}`);
 });
+
