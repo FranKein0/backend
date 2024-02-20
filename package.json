@@ -2,10 +2,10 @@
   "name": "entrega-3",
   "version": "1.0.0",
   "description": "",
-  "main": "desafio-3.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon desafio-3.js"
+    "start": "nodemon ./src/app.js"
   },
   "keywords": [],
   "author": "",
